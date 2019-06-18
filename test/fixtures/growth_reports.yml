@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 
+  count: 
+  small_purpose: one
+
+two:
+  amount: 
+  count: 
+  small_purpose: two

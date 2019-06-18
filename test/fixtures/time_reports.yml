@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  played_time: 
+  played_date: 2019-06-18
+  small_pupose: one
+
+two:
+  played_time: 
+  played_date: 2019-06-18
+  small_pupose: two
