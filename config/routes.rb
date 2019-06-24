@@ -5,11 +5,6 @@ Rails.application.routes.draw do
   
   resources :user, except: [:index, :delete]
   
-  resources :small_purpose, except: [:delete] do
-    collection do
-      get :completed
-    end 
-  end 
   
   resources :big_purpose, except: [:delete] do
     collection do
@@ -17,7 +12,11 @@ Rails.application.routes.draw do
     end
     
     member do
-      resources :small_purpose, only: [:index, :show, :completed]
+      resources :small_purpose, except: [:delete] do
+          collection do
+            get :completed
+          end 
+      end 
     end 
   end 
   
