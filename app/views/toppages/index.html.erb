@@ -1,47 +1,78 @@
-<div class="center jumbotron">
-    <div class="text-center center-block">
-        <image src="#" alt="サイトの紹介画像"><br>
-        <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
-    </div>
-</div>
-<div class="container mt-4 mb-4">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="#" alt="サイトの機能紹介">
-        </div>
-        
-        <div class="col-md-4">
-            <img src="#" alt="サイトの機能紹介">
-        </div>
-        
-        <div class="col-md-4">
-            <img src="#" alt="サイトの機能紹介">
-        </div>
-    </div>
-</div>
-
-
-<h2 class="text-center">機能詳細</h2>
-<div class="container mt-4 center-block">
-    <div class="row">
-        <div class="col-md-2">
-            <img src="#" alt="サイトの機能詳細">
-        </div>
-        
-        <div class="col-md-2">
-            <img src="#" alt="サイトの機能詳細">
-        </div>
-        
-        <div class="col-md-2">
-            <img src="#" alt="サイトの機能詳細">
-        </div>
-        
-        <div class="col-md-2">
-            <img src="#" alt="サイトの機能詳細">
-        </div>
-        
-        <div class="col-md-2">
-            <img src="#" alt="サイトの機能詳細">
-        </div>
-    </div>
-</div>
+<% if logged_in? %>
+  <h1 class = "text-center" ><%= current_user.name %>の詳細ページ</h1>
+  
+  <table class="mt-4 table table-bordered table-condensed">
+      <tr>
+          <th class="text-center">名前</th>
+          <td class="text-center"><%= current_user.name %></td>
+      </tr>
+      
+      <tr>
+          <th class="text-center">メールアドレス</th>
+          <td class="text-center"><%= current_user.email %></td>
+      </tr>
+      
+      <tr>
+          <th class="text-center">登録日</th>
+          <td class="text-center"><%= current_user.created_at %></td>
+      </tr>
+      
+      <tr>
+          <th class="text-center">達成した目標数</th>
+          <td class="text-center bg-warning">保留中</td>
+      </tr>
+  </table>
+  
+  <div class="text-center">
+      <%= link_to '編集' , edit_user_path(current_user), class: 'btn btn-primary' %>
+  </div>
+  
+<% else %>
+  <div class="center jumbotron">
+      <div class="text-center center-block">
+          <image src="#" alt="サイトの紹介画像"><br>
+          <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+      </div>
+  </div>
+  <div class="container mt-4 mb-4">
+      <div class="row">
+          <div class="col-md-4">
+              <img src="#" alt="サイトの機能紹介">
+          </div>
+          
+          <div class="col-md-4">
+              <img src="#" alt="サイトの機能紹介">
+          </div>
+          
+          <div class="col-md-4">
+              <img src="#" alt="サイトの機能紹介">
+          </div>
+      </div>
+  </div>
+  
+  
+  <h2 class="text-center">機能詳細</h2>
+  <div class="container mt-4 center-block">
+      <div class="row">
+          <div class="col-md-2">
+              <img src="#" alt="サイトの機能詳細">
+          </div>
+          
+          <div class="col-md-2">
+              <img src="#" alt="サイトの機能詳細">
+          </div>
+          
+          <div class="col-md-2">
+              <img src="#" alt="サイトの機能詳細">
+          </div>
+          
+          <div class="col-md-2">
+              <img src="#" alt="サイトの機能詳細">
+          </div>
+          
+          <div class="col-md-2">
+              <img src="#" alt="サイトの機能詳細">
+          </div>
+      </div>
+  </div>
+<% end %>
