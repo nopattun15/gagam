@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
   get 'signup', to: 'users#new'
   
-  resources :user, except: [:index, :delete]
+  resources :users, except: [:index, :delete]
   
   
-  resources :big_purpose, except: [:delete] do
+  resources :big_purposes, except: [:delete] do
     collection do
       get :completed
     end
     
     member do
-      resources :small_purpose, except: [:delete] do
+      resources :small_purposes, except: [:delete] do
           collection do
             get :completed
           end 
@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     end 
   end 
   
-  resources :time_report, only: [:new, :create, :edit, :update]
+  resources :time_reports, only: [:new, :create, :edit, :update]
   resources :growth_reports, only: [:new, :create, :edit, :update]
 end
