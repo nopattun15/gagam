@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     
     if login(email, password)
       flash[:success] = 'ログインが完了しました'
-      redirect_to @user
+      redirect_to '/big_purposes'
     else
       flash.now[:danger] = 'ログインできませんでした'
       render :new

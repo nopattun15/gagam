@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   
   
   resources :big_purposes, except: [:delete] do
+    
+    member do
+      put :finish
+    end 
+    
     collection do
       get :completed
     end
@@ -26,4 +31,7 @@ Rails.application.routes.draw do
   
   resources :time_reports, only: [:new, :create, :edit, :update]
   resources :growth_reports, only: [:new, :create, :edit, :update]
+  
+  
+  
 end

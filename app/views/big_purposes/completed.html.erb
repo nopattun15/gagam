@@ -1,0 +1,27 @@
+<% if @big_purposes.any? %>
+  <div class="text-center">
+      <h1>達成目標一覧</h1>
+  </div>
+  
+  <table class="table table-borderd table-striped">
+      <thead>
+          <tr>
+              <th class="text-center">目標名</th>
+              <th class="text-center">開始日</th>
+              <th class="text-center">達成日</th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @big_purposes.each do |big_purpose| %>
+            <tr>
+              <td class="text-center"><%= link_to big_purpose.title, big_purpose %></td>
+              <td class="text-center"><%= big_purpose.created_at %></td>
+              <td class="text-center"><%= big_purpose.updated_at %></td>
+            </tr>
+          <% end %>
+      </tbody>
+  </table>
+<% else %>
+  <h1>コツコツ頑張ろう!</h1>
+<% end %>
+
