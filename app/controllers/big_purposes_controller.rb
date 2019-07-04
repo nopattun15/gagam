@@ -5,6 +5,7 @@ class BigPurposesController < ApplicationController
 
   def show
     @big_purpose = current_user.big_purposes.find(params[:id])
+    @small_purposes = @big_purpose.small_purposes.where('done = false').order(id: :desc).page(params[:page]).per(10)
     
   end
 

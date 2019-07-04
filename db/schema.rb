@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_30_135419) do
+ActiveRecord::Schema.define(version: 2019_07_01_104515) do
 
   create_table "big_purposes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(version: 2019_06_30_135419) do
   create_table "small_purposes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.date "time_limit"
-    t.boolean "done"
     t.bigint "big_purpose_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "done", default: false, null: false
     t.index ["big_purpose_id"], name: "index_small_purposes_on_big_purpose_id"
     t.index ["user_id"], name: "index_small_purposes_on_user_id"
   end

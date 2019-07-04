@@ -1,0 +1,55 @@
+<h1 class='text-center'>小目標達成一覧</h1>
+<% if @small_purposes.any? %>
+  <div class="row">
+    <% @small_purposes.each do |small_purpose| %>
+    <div class="col-sm-6 mt-4">
+      <ul>
+        <li class='text-center', style='list-style: none;'>タイトル : <%= link_to small_purpose.title,  big_purpose_small_purpose_path(@big_purpose, small_purpose) %></li>
+        <li class='text-center', style='list-style: none;'>開始日 : <%= small_purpose.created_at %></li>
+        <li class='text-center', style='list-style: none;'>達成日 : <%= small_purpose.updated_at %></li>
+      </ul>
+      <canvas id="myLineChart" width="200" height="100"></canvas>
+        <script>
+          var ctx = document.getElementById("myLineChart");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+
+              labels: ['1回目', '2回目', '3回目', '4回目', '5回目', '6回目', '7回目', '8回目', '9回目' , '10回目', '11', '12', '13'],
+              datasets: [
+                {
+                  label: '最高気温(度）',
+                  data: [20, 25, 25, 30, 40, 40, 55, 55, 55, 60, 80, 90, 100],
+                  borderColor: "rgba(255,0,0,1)",
+                  backgroundColor: "rgba(0,0,0,0)"
+                }
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: '気温（8月1日~8月7日）'
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    suggestedMax: 40,
+                    suggestedMin: 0,
+                    stepSize: 10,
+                    callback: function(value, index, values){
+                      return  value +  'kg'
+                    }
+                  }
+                }]
+              },
+            }
+          });
+        </script>
+    </div>
+    <% end %>
+  </div>
+<% else %>
+  <h3 class="mt-4 text-center">小目標を達成しよう!</h3>
+  <%= link_to '目標一覧', big_purpose_small_purpose_path(@big_purpose), class:'btn btn-primary btn-block' %>
+<% end %>
+

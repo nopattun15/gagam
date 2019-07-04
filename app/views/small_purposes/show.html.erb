@@ -1,0 +1,95 @@
+<div>
+  <h1 class="text-center"><%= @small_purpose.title %></h1>
+  <h2 class="text-center">期限 : <%= @small_purpose.time_limit %></h2> 
+  
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <canvas id="myChart" width="200" height="100"></canvas>
+      <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                  label: '# of Votes',
+                  data: [12, 19, 3, 5, 2, 3],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+      });
+      </script>
+    <button>値入力ボタン</button></div>
+    <button>編集</button>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-12">
+        <canvas id="myLineChart" width="200" height="100"></canvas>
+        <script>
+          var ctx = document.getElementById("myLineChart");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+
+              labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
+              datasets: [
+                {
+                  label: '最高気温(度）',
+                  data: [35, 34, 37, 35, 34, 35, 34, 25],
+                  borderColor: "rgba(255,0,0,1)",
+                  backgroundColor: "rgba(0,0,0,0)"
+                }
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: '気温（8月1日~8月7日）'
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    suggestedMax: 40,
+                    suggestedMin: 0,
+                    stepSize: 10,
+                    callback: function(value, index, values){
+                      return  value +  '度'
+                    }
+                  }
+                }]
+              },
+            }
+          });
+        </script>
+        <p class="text-center">小目標1</p>
+      </div>
+  </div>
+</div>

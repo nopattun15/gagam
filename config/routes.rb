@@ -19,14 +19,17 @@ Rails.application.routes.draw do
     collection do
       get :completed
     end
-    
-    member do
-      resources :small_purposes, except: [:delete] do
-          collection do
-            get :completed
-          end 
+
+    resources :small_purposes, except: [:delete] do
+      member do
+        put :finish
+      end 
+      
+      collection do
+        get :completed
       end 
     end 
+     
   end 
   
   resources :time_reports, only: [:new, :create, :edit, :update]

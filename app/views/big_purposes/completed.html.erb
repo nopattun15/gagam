@@ -14,7 +14,7 @@
       <tbody>
           <% @big_purposes.each do |big_purpose| %>
             <tr>
-              <td class="text-center"><%= link_to big_purpose.title, big_purpose %></td>
+              <td class="text-center"><%= link_to big_purpose.title, completed_big_purpose_small_purposes_path(big_purpose) %></td>
               <td class="text-center"><%= big_purpose.created_at %></td>
               <td class="text-center"><%= big_purpose.updated_at %></td>
             </tr>
