@@ -7,6 +7,8 @@ class SmallPurposesController < ApplicationController
   def show
     @big_purpose = BigPurpose.find(params[:big_purpose_id])
     @small_purpose = @big_purpose.small_purposes.find(params[:id])
+    @time_reports = @small_purpose.time_reports.all
+    @growth_reports = @small_purpose.growth_reports.all
   end
 
   def new

@@ -7,18 +7,26 @@
         <li class='text-center', style='list-style: none;'>開始日 : <%= small_purpose.created_at %></li>
         <li class='text-center', style='list-style: none;'>期限 : <%= small_purpose.time_limit %></li>
       </ul>
-      <canvas id="myLineChart" width="200" height="100"></canvas>
+      <canvas id="myLineChart<%= small_purpose.id %>" width="200" height="100"></canvas>
         <script>
-          var ctx = document.getElementById("myLineChart");
+          var ctx = document.getElementById("myLineChart<%= small_purpose.id %>");
           var myLineChart = new Chart(ctx, {
             type: 'line',
             data: {
 
-              labels: ['1回目', '2回目', '3回目', '4回目', '5回目', '6回目', '7回目', '8回目', '9回目' , '10回目', '11', '12', '13'],
+              labels: [
+                <% small_purpose.growth_reports.each do |growth_report| %>
+                  '<%= growth_report.count %>',
+                <% end %>
+                ],
               datasets: [
                 {
-                  label: '最高気温(度）',
-                  data: [20, 25, 25, 30, 40, 40, 55, 55, 55, 60, 80, 90, 100],
+                  label: '',
+                  data: [
+                    <% small_purpose.growth_reports.each do |growth_report| %>
+                      <%= growth_report.amount %>,
+                    <% end %>
+                    ],
                   borderColor: "rgba(255,0,0,1)",
                   backgroundColor: "rgba(0,0,0,0)"
                 }
@@ -27,7 +35,7 @@
             options: {
               title: {
                 display: true,
-                text: '気温（8月1日~8月7日）'
+                text: ''
               },
               scales: {
                 yAxes: [{
@@ -36,7 +44,7 @@
                     suggestedMin: 0,
                     stepSize: 10,
                     callback: function(value, index, values){
-                      return  value +  'kg'
+                      return  value
                     }
                   }
                 }]
