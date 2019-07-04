@@ -1,18 +1,18 @@
 class GrowthReportsController < ApplicationController
   
   def new
-    @small_purpose = SmallPurpose.find(params[:small_purpose_id])
-    @growth_report = @small_purpose.growth_reports.build
+    @small_purpose_time = SmallPurpose.find(params[:small_purpose_id])
+    @growth_report = @small_purpose_time.growth_reports.build
   end
 
   def create
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
-    @growth_report = @small_purpose.growth_reports.build(growth_report_params)
+    @small_purpose_time = current_user.small_purposes.find(params[:small_purpose_id])
+    @growth_report = @small_purpose_time.growth_reports.build(growth_report_params)
     
     
     if @growth_report.save
       flash[:success] = '値が作成されました'
-      redirect_to big_purpose_small_purpose_path(@small_purpose.big_purpose_id, @small_purpose)
+      redirect_to big_purpose_small_purpose_path(@small_purpose_time.big_purpose_id, @small_purpose_time)
     else
       flash.now[:danger] = '値が作成されませんでした'
       render :new 

@@ -1,0 +1,16 @@
+<%= form_with(model: [@small_purpose, @time_report], local: true) do |f| %>
+<%= render '/layouts/error_messages', model: f.object %>
+
+  <div class="form-group">
+      <%= f.label :played_date, '日付' %>
+      <%= f.date_field :played_date, class:'form-control' %>
+  </div>
+  
+  <div class="form-group">
+      <%= f.label :played_time, '実行時間' %>
+      <%= f.text_field :played_time, class:'form-control' %>
+  </div>
+  
+  <%= f.submit '完了', class: 'btn btn-primary btn-block' %>
+  
+<% end %>
