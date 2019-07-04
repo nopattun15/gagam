@@ -32,8 +32,10 @@ Rails.application.routes.draw do
      
   end 
   
-  resources :time_reports, only: [:new, :create, :edit, :update]
-  resources :growth_reports, only: [:new, :create, :edit, :update]
+  resources :small_purposes, except: [:delete] do
+    resources :time_reports, only: [:new, :create, :edit, :update]
+    resources :growth_reports, only: [:new, :create, :edit, :update]
+  end 
   
   
   

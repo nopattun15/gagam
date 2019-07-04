@@ -1,0 +1,16 @@
+<%= form_with(model: [@small_purpose, @growth_report], local: true) do |f| %>
+<%= render '/layouts/error_messages', model: f.object %>
+
+  <div class="form-group">
+    <%= f.label :count, '横軸の入力値' %>
+    <%= f.text_field :count, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :amount, '縦軸の入力値' %>
+    <%= f.text_field :amount, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit '完了', class: 'btn btn-primary btn-block'  %>
+  
+<% end %>

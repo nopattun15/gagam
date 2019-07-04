@@ -1,3 +1,4 @@
+
 <div>
   <h1 class="text-center"><%= @small_purpose.title %></h1>
   <h2 class="text-center">期限 : <%= @small_purpose.time_limit %></h2> 
@@ -46,10 +47,10 @@
           }
       });
       </script>
-    <button>値入力ボタン</button></div>
-    <button>編集</button>
+      <%= link_to '成長度入力', new_small_purpose_growth_report_path(@small_purpose), class:'btn btn-primary btn-block' %>
   </div>
-  <div class="col-sm-12">
+
+  <div class="col-sm-12 mt-4">
     <div class="row">
       <div class="col-sm-12">
         <canvas id="myLineChart" width="200" height="100"></canvas>
@@ -89,7 +90,8 @@
             }
           });
         </script>
-        <p class="text-center">小目標1</p>
+        <%= link_to '成長度入力', new_small_purpose_growth_report_path(@small_purpose), class:'btn btn-primary btn-block mt-4' %>
+        <!-- <!%= link_to '成長度編集', edit_small_purpose_growth_report_path(@small_purpose, @growth_report), class:'btn btn-success btn-block mb-2' %> -->
       </div>
   </div>
 </div>
