@@ -2,12 +2,12 @@
 <%= render '/layouts/error_messages', model: f.object %>
 
   <div class="form-group">
-    <%= f.label :count, '横軸の入力値' %>
+    <%= f.label :count, '回数' %>
     <%= f.number_field :count, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-    <%= f.label :amount, '縦軸の入力値' %>
+    <%= f.label :amount, '成長度' %>
     <%= f.number_field :amount, class: 'form-control' %>
   </div>
   
