@@ -3,7 +3,7 @@
       <h1>大目標一覧</h1>
   </div>
   
-  <table class="table table-borderd table-striped">
+  <table class="table table-borderd table-striped mt-4">
       <thead>
           <tr>
               <th class="text-center">目標名</th>
@@ -20,7 +20,7 @@
               <td class="text-center"><%= big_purpose.time_limit %></td>
               
               <td class="text-center">
-                  <%= link_to '達成', [ :finish, big_purpose ], :method => :put, class: ' btn btn-primary ' %>
+                  <%= link_to '達成', [ :finish, big_purpose ], :method => :put, data: { confirm: '一度達成すると戻すことはできませんがよろしいでしょうか?'}, class: ' btn btn-info ' %>
                   <%= link_to '編集', edit_big_purpose_path(big_purpose), class: ' btn btn-success ' %>
               </td>
             </tr>
@@ -29,6 +29,6 @@
   </table>
   <%= link_to '新規作成', new_big_purpose_path, class:'btn btn-primary btn-block' %>
 <% else %>
-  <h1>ようこそ!大目標を作成しよう!</h1>
-  <%= link_to '新規作成', new_big_purpose_path, class:'btn btn-primary btn-block' %>
+  <h1 class='text-center'>ようこそ!大目標を作成しよう!</h1>
+  <%= link_to '新規作成', new_big_purpose_path, class:'btn btn-primary btn-block mt-4' %>
 <% end %>

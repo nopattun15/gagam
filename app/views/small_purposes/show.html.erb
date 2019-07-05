@@ -1,8 +1,10 @@
-
 <div>
   <h1 class="text-center"><%= @small_purpose.title %></h1>
   <h2 class="text-center">期限 : <%= @small_purpose.time_limit %></h2> 
-  
+</div>
+
+<div class="text-center center-block">
+  <%= link_to '一覧に戻る', big_purpose_small_purposes_path(@big_purpose), class:'btn btn-secondary mb-2' %>
 </div>
 
 <div class="row">
@@ -19,7 +21,7 @@
                   <% end %>
                   ],
               datasets: [{
-                  label: '',
+                  label: '実行時間 (分)',
                   data: [
                     <% @time_reports.each do |time_report| %>
                       <%= time_report.played_time %>,
@@ -65,6 +67,8 @@
               datasets: [
                 {
                   label: '',
+                  /* <!%= growth_report.title %> */
+                  
                   data: [
                     <% @growth_reports.each do |growth_report| %>
                       <%= growth_report.amount %>,
@@ -95,9 +99,9 @@
             }
           });
         </script>
-        <%= link_to '成長度入力', new_small_purpose_growth_report_path(@small_purpose), class:'btn btn-primary btn-block mt-4' %>
+        <%= link_to '成長度入力', new_small_purpose_growth_report_path(@small_purpose), class:'btn btn-primary btn-block' %>
         <!-- <!%= link_to '成長度編集', edit_small_purpose_growth_report_path(@small_purpose, @growth_report), class:'btn btn-success btn-block mb-2' %> -->
       </div>
   </div>
-  <%= link_to '一覧に戻る', big_purpose_small_purposes_path(@big_purpose), class:'btn btn-secondary btn-block mt-5' %>
+  
 </div>

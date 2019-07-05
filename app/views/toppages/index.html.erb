@@ -4,12 +4,14 @@
 
 <% else %>
   <div class="center jumbotron">
+    <h1 class='text-center'>ようこそ!自分の努力を可視化しましょう!</h1>
+    
       <div class="text-center center-block">
-          <image src="#" alt="サイトの紹介画像"><br>
-          <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
-      </div>
+          <!-- <image src="#" alt="サイトの紹介画像"><br>-->
+          <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary mt-4' %>
+      </div>  
   </div>
-  <div class="container mt-4 mb-4">
+  <!-- <div class="container mt-4 mb-4">
       <div class="row">
           <div class="col-md-4">
               <img src="#" alt="サイトの機能紹介">
@@ -49,5 +51,5 @@
               <img src="#" alt="サイトの機能詳細">
           </div>
       </div>
-  </div>
+  </div> -->
 <% end %>
