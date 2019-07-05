@@ -1,12 +1,11 @@
 class TimeReportsController < ApplicationController
+  before_action :set_small_purpose, only: [:new, :create, :edit, :update]
   
   def new
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @time_report = @small_purpose.time_reports.build
   end
 
   def create
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @time_report = @small_purpose.time_reports.build(time_report_params)
     
     if @time_report.save
@@ -19,12 +18,10 @@ class TimeReportsController < ApplicationController
   end
 
   def edit
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @time_report = @small_purpose.time_reports.find(params[:id])
   end
 
   def update
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @time_report = @small_purpose.time_reports.find(params[:id])
     
     if @time_report.update(time_report_params)
@@ -37,6 +34,10 @@ class TimeReportsController < ApplicationController
   end
   
   private
+  
+  def set_small_purpose
+    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
+  end 
   
   def time_report_params
     params.require(:time_report).permit(:played_time, :played_date)

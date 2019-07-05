@@ -1,10 +1,11 @@
 class BigPurposesController < ApplicationController
+  before_action :set_big_purpose, only: [:show, :edit, :finish]
+  
   def index
     @big_purposes = current_user.big_purposes.where('done = false').order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
-    @big_purpose = current_user.big_purposes.find(params[:id])
     @small_purposes = @big_purpose.small_purposes.where('done = false').order(id: :desc).page(params[:page]).per(10)
     
   end
@@ -26,7 +27,6 @@ class BigPurposesController < ApplicationController
   end 
 
   def edit
-    @big_purpose = current_user.big_purposes.find(params[:id])
   end
   
   def update
@@ -42,7 +42,6 @@ class BigPurposesController < ApplicationController
   end
   
   def finish
-    @big_purpose = BigPurpose.find(params[:id])
     @big_purpose.update_attribute(:done, true)
     redirect_back(fallback_location: root_path)
   end 
@@ -52,6 +51,10 @@ class BigPurposesController < ApplicationController
   end
   
   private
+  
+  def set_big_purpose
+    @big_purpose = current_user.big_purposes.find(params[:id])
+  end 
   
   def big_purpose_params
     params.require(:big_purpose).permit(:title, :time_limit)

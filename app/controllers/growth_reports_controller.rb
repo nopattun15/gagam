@@ -1,14 +1,12 @@
 class GrowthReportsController < ApplicationController
+  before_action :set_small_purpose, only: [:new, :create, :edit, :update]
   
   def new
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @growth_report = @small_purpose.growth_reports.build
   end
 
   def create
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @growth_report = @small_purpose.growth_reports.build(growth_report_params)
-    
     
     if @growth_report.save
       flash[:success] = '値が作成されました'
@@ -20,12 +18,10 @@ class GrowthReportsController < ApplicationController
   end
 
   def edit
-    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
     @growth_report = @small_purpose.growth_reports.find(params[:id])
   end
 
   def update
-    @small_purpose = current_user.smallpurpose.find(params[:small_purpose_id])
     @growth_report = @small_purpose.growth_report.find(params[:id])
     
     if @growth_report.update(growth_report_params)
@@ -38,6 +34,10 @@ class GrowthReportsController < ApplicationController
   end
   
   private
+  
+  def set_small_purpose
+    @small_purpose = current_user.small_purposes.find(params[:small_purpose_id])
+  end 
   
   def growth_report_params
     params.require(:growth_report).permit(:amount, :count)

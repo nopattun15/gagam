@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show,:edit]
-
+  before_action :set_user, only: [:show, :edit, :update]
+  
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -23,11 +23,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if params[:user][:password].present?
       if !@user.authenticate(params[:present_password])
         flash.now[:danger] = "正しいパスワードではありません。"
@@ -53,6 +51,11 @@ class UsersController < ApplicationController
   end
 
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end 
+  
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end

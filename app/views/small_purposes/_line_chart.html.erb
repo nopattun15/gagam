@@ -1,0 +1,45 @@
+<canvas id="myLineChart<%= small_purpose.id %>" width="200" height="100"></canvas>
+        <script>
+          var ctx = document.getElementById("myLineChart<%= small_purpose.id %>");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+
+              labels: [
+                <% small_purpose.growth_reports.each do |growth_report| %>
+                  '<%= growth_report.count %>',
+                <% end %>
+                ],
+              datasets: [
+                {
+                  label: '',
+                  data: [
+                    <% small_purpose.growth_reports.each do |growth_report| %>
+                      <%= growth_report.amount %>,
+                    <% end %>
+                    ],
+                  borderColor: "rgba(255,0,0,1)",
+                  backgroundColor: "rgba(0,0,0,0)"
+                }
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: ''
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    suggestedMax: 200,
+                    suggestedMin: 0,
+                    stepSize: 10,
+                    callback: function(value, index, values){
+                      return  value
+                    }
+                  }
+                }]
+              },
+            }
+          });
+        </script>
