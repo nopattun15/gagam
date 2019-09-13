@@ -1,12 +1,12 @@
 <% if @small_purposes.any? %>
-    
+<h1 class="text-center">小目標一覧</h1>
   <div class="text-center center-block">
     <%= link_to '一覧に戻る', big_purposes_path(@big_purpose), class:'btn btn-secondary mb-2' %>
   </div>
   
   <div class="row">
     <% @small_purposes.each do |small_purpose| %>
-    <div class="col-sm-6 mt-4">
+    <div class="col-md-6 mt-4">
       <ul class='list-group'>
         <li class='text-center list-group-item'>タイトル : <%= link_to small_purpose.title,  big_purpose_small_purpose_path(@big_purpose, small_purpose), class: 'list-link' %></li>
         <li class='text-center list-group-item'>開始日 : <%= small_purpose.created_at %></li>
@@ -20,15 +20,16 @@
             data: {
 
               labels: [
-                <% small_purpose.growth_reports.each do |growth_report| %>
+                <% asc_small_purposes = small_purpose.growth_reports.order(count: :asc) %>  // 成長度合いの順番を実行回数(count)の昇順に整理
+                <% asc_small_purposes.each do |growth_report| %>
                   '<%= growth_report.count %>',
                 <% end %>
                 ],
               datasets: [
                 {
-                  label: '',
+                  label: '成長度',
                   data: [
-                    <% small_purpose.growth_reports.each do |growth_report| %>
+                    <% asc_small_purposes.each do |growth_report| %>
                       <%= growth_report.amount %>,
                     <% end %>
                     ],
@@ -45,9 +46,9 @@
               scales: {
                 yAxes: [{
                   ticks: {
-                    suggestedMax: 40,
-                    suggestedMin: 0,
-                    stepSize: 100,
+                    //suggestedMax: 40,
+                    //suggestedMin: 0,
+                    //stepSize: 100,
                     callback: function(value, index, values){
                       return  value
                     }
@@ -57,8 +58,11 @@
             }
           });
         </script>
-      <%= link_to '編集', edit_big_purpose_small_purpose_path(@big_purpose, small_purpose), class: 'btn btn-success btn-block mt-2' %>
-      <%= link_to '達成',  finish_big_purpose_small_purpose_path(@big_purpose, small_purpose), :method => :put, data: { confirm: '一度達成すると戻すことはできませんがよろしいでしょうか?'}, class: ' btn btn-info btn-block ' %>
+        <div class="text-center">
+          <%= link_to '編集', edit_big_purpose_small_purpose_path(@big_purpose, small_purpose), class: 'btn btn-success' %>
+          <%= link_to '達成',  finish_big_purpose_small_purpose_path(@big_purpose, small_purpose), :method => :put, data: { confirm: '一度達成すると戻すことはできませんがよろしいでしょうか?'}, class: ' btn btn-info' %>
+          <%= link_to '詳細', big_purpose_small_purpose_path(@big_purpose, small_purpose), class: 'btn  btn-link border' %>
+        </div>  
     </div>
     <% end %>
   </div>

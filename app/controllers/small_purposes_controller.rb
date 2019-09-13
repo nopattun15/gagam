@@ -7,8 +7,8 @@ class SmallPurposesController < ApplicationController
   end
 
   def show
-    @time_reports = @small_purpose.time_reports.all
-    @growth_reports = @small_purpose.growth_reports.all
+    @time_reports = @small_purpose.time_reports.order(played_date: :asc)
+    @growth_reports = @small_purpose.growth_reports.order(count: :asc)
   end
 
   def new

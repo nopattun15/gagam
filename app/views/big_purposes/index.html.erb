@@ -9,7 +9,7 @@
               <th class="text-center">目標名</th>
               <th class="text-center">開始日</th>
               <th class="text-center">期限</th>
-              <th class="text-center">編集ボタン</th>
+              <th class="text-center"></th>
           </tr>
       </thead>
       <tbody>
@@ -22,6 +22,7 @@
               <td class="text-center">
                   <%= link_to '達成', [ :finish, big_purpose ], :method => :put, data: { confirm: '一度達成すると戻すことはできませんがよろしいでしょうか?'}, class: ' btn btn-info ' %>
                   <%= link_to '編集', edit_big_purpose_path(big_purpose), class: ' btn btn-success ' %>
+                  <%= link_to '詳細', big_purpose_path(big_purpose.id), class: 'btn btn-link border' %>
               </td>
             </tr>
           <% end %>
