@@ -3,11 +3,11 @@
 
   <div class="form-group">
     <!-- 回数の入力を助けるための機能 -->
-    <% max_growth_report = @small_purpose.growth_reports.maximum(:count) %>
-    <% if max_growth_report == nil %>
+    <% max_count = @small_purpose.growth_reports.maximum(:count) %>
+    <% if max_count == nil %>
       <% ex_count = 1 %>
     <% else %>
-      <% ex_count = max_growth_report + 1 %>
+      <% ex_count = max_count + 1 %>
     <% end %>
     
     <%= f.label :count, '回数' %>
@@ -16,7 +16,7 @@
   
   <div class="form-group">
     <%= f.label :amount, '成長度' %>
-    <%= f.number_field :amount, class: 'form-control',value: @small_purpose.growth_reports.maximum(:amount) + 5 %>
+    <%= f.number_field :amount, class: 'form-control' %>
   </div>
   
   <%= f.submit '完了', class: 'btn btn-primary btn-block'  %>
